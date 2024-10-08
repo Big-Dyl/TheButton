@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import image from './button.webp';
+import './App.css'
+let c = localStorage.getItem("count");
+let count = c ? parseInt(c) : 0;
+const button = <img src = {image} onClick = {()=>{
+  count++
+  (document.getElementById("count") as HTMLElement).innerHTML = `you have pressed the button ${count} times`
+  localStorage.setItem("count", count.toString());
+}}></img>
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {button}
+        <p id = "count">you have pressed the button {count} times</p>
     </div>
   );
 }
